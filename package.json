@@ -1,6 +1,6 @@
 {
   "name": "gulp-git-sftp",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Gulp plugin for sftp deploy with git",
   "main": "index.js",
   "scripts": {
@@ -40,6 +40,10 @@
   "_npmOperationalInternal": {
     "host": "packages-18-east.internal.npmjs.com",
     "tmp": "tmp/gulp-git-sftp-0.0.1.tgz_1488069199919_0.5251355252694339"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slaawwa/gulp-git-sftp.git"
   },
   "directories": {},
   "_resolved": "https://registry.npmjs.org/gulp-git-sftp/-/gulp-git-sftp-0.0.1.tgz",
