@@ -1,0 +1,52 @@
+{
+  "name": "gulp-git-sftp",
+  "version": "0.0.9",
+  "description": "Gulp plugin for sftp deploy with git",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "sftp",
+    "git",
+    "deploy"
+  ],
+  "author": {
+    "name": "Slaawwa",
+    "email": "slaawwa@gmail.com",
+    "url": "http://go2url.tk/gulp-git-sftp"
+  },
+  "license": "ISC",
+  "_id": "gulp-git-sftp@0.0.3",
+  "_shasum": "197f0f0933f98316da803ec29fc8ad768d36c54a",
+  "_from": "gulp-git-sftp@latest",
+  "_npmVersion": "3.8.3",
+  "_nodeVersion": "5.10.1",
+  "_npmUser": {
+    "name": "slaawwa",
+    "email": "slaawwa@i.ua"
+  },
+  "dist": {
+    "shasum": "5c1993e551b1bbb6a999615991611705847e7030",
+    "tarball": "https://registry.npmjs.org/gulp-git-sftp/-/gulp-git-sftp-0.0.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "slaawwa",
+      "email": "slaawwa@i.ua"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/gulp-git-sftp-0.0.1.tgz_1488069199919_0.5251355252694339"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/gulp-git-sftp/-/gulp-git-sftp-0.0.1.tgz",
+  "readme": "ERROR: No README data found!",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-git": "^2.1.0",
+    "vinyl-ftp": "^0.6.0"
+  }
+}
