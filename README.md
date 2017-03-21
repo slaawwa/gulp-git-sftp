@@ -89,6 +89,4 @@ gulp.task('deploy', function() {
 // BUILD TASKS 
 // ...
 
-});
-
 ```
