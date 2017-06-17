@@ -7,9 +7,9 @@
 
 ## Install `gulp-git-sftp` with `--save-dev`
 
-```bash
+```sh
 npm i gulp-git-sftp -D
-```
+$ ```
 
 ## What is gulp-git-sftp?
 
@@ -17,6 +17,45 @@ npm i gulp-git-sftp -D
 - **git** - git...
 - **sftp** - sftp...
 - **Simple** - By providing only a minimal API surface, gulp is easy to learn and simple to use
+
+## Sample use
+
+```sh
+# Load index.html and my.css and delete old.html
+$ gulp dep:files -f=index.html,my.css,del:old.html
+```
+
+```sh
+# Load and delete all changes form git (what `git add` now)
+# So, it is cool use before commit for preprod server for hot test
+$ gulp dep:git
+```
+
+```sh
+# Load all files to server
+$ gulp deploy
+```
+
+```sh
+# Delete all files to server
+$ gulp deploy --del
+```
+
+```sh
+# Load all files to server from `dist` (local directory) to `public` (remote directory)
+$ gulp deploy --basePath=dist --remotePath=public
+```
+
+```sh
+# Delete `public` directory on remote side
+$ gulp deploy --remotePath=public --del
+```
+
+```sh
+# Deploy files to prod server in config (for more information about config watch [Help] directory)
+$ gulp deploy --dephost=prod
+```
+
 
 ## Sample `gulpfile.js`
 
@@ -33,13 +72,9 @@ var ggs = require('gulp-git-sftp'),
 
 var FTP = ggs.ftp(CNF);
 
-var conn = FTP.conn({
-    user: argv.user || CNF.user,
-    pass: argv.pass || CNF.pass,
-    host: argv.host || CNF.host,
-});
+var conn = FTP.conn();
 
-gulp.task('fgit', function() {
+gulp.task('dep:files', function() {
     
     var files = argv.f;
         
@@ -48,6 +83,8 @@ gulp.task('fgit', function() {
     files = FTP._file2format( files.split(',') );
     console.log(files)
     
+    // TODO: need add return for correct work with stream 
+    // return ggs.git({...}, (err)=>{...});
     ggs.git({
         conn: conn,
         files: files,
@@ -60,7 +97,9 @@ gulp.task('fgit', function() {
     });
 });
 
-gulp.task('git', function() {
+gulp.task('dep:git', function() {
+    // TODO: need add return for correct work with stream 
+    // return ggs.git({...}, (err)=>{...});
     ggs.git({
         conn: conn,
         basePath: CNF.basePath,
@@ -75,12 +114,12 @@ gulp.task('git', function() {
 gulp.task('deploy', function() {
        
     if (!argv.del) {
-        gulp.src( [`${CNF.basePath}/**/*`, '!node_modules{,/**}', '!bower{,/**}', '!bower_components{,/**}', '**/.htaccess'], { base: CNF.basePath, buffer: false } )
+        return gulp.src( [`${CNF.basePath}/**/*`, '!node_modules{,/**}', '!bower{,/**}', '!bower_components{,/**}', '**/.htaccess'], { base: CNF.basePath, buffer: false } )
             .pipe( conn.newer( CNF.remotePath || argv.remotePath ) ) // only upload newer files 
             .pipe( conn.dest( CNF.remotePath || argv.remotePath ) );
     } else {
         // conn.delete(CNF.remotePath+'dd', function(e) {
-        conn.rmdir(CNF.remotePath, function(e) {
+        return conn.rmdir(CNF.remotePath, function(e) {
             console.log('deleted:', CNF.remotePath);
         });
     }
@@ -110,3 +149,5 @@ Something like that:
     "deploy:del": "gulp deploy --del"
 } 
 ```
+
+   [Help]: <https://github.com/slaawwa/gulp-git-sftp/tree/master/help>

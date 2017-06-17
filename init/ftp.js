@@ -9,8 +9,10 @@ var ftp = require('vinyl-ftp')/*,
     remotePath = CNF.remotePath,
     basePath = CNF.basePath;*/
 
+var _CNF;
+
 function getFtpConnection(conf) {
-    conf = conf || {};
+    conf = conf || _CNF || {};
     return ftp.create({
         host: conf.host/* || host*/,
         user: conf.user/* || user*/,
@@ -22,6 +24,7 @@ function getFtpConnection(conf) {
 
 module.exports = {
     init: function(CNF) {
+        _CNF = CNF;
         return {
             conn: getFtpConnection,
             remotePath: CNF.remotePath || remotePath,
