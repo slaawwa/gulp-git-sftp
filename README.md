@@ -8,8 +8,8 @@
 ## Install `gulp-git-sftp` with `--save-dev`
 
 ```sh
-npm i gulp-git-sftp -D
-$ ```
+$ npm i gulp-git-sftp -D
+```
 
 ## What is gulp-git-sftp?
 
@@ -51,8 +51,9 @@ $ gulp deploy --basePath=dist --remotePath=public
 $ gulp deploy --remotePath=public --del
 ```
 
+### for more information about config watch [Help] directory
 ```sh
-# Deploy files to prod server in config (for more information about config watch [Help] directory)
+# Deploy files to prod server in config 
 $ gulp deploy --dephost=prod
 ```
 
