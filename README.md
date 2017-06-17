@@ -130,7 +130,7 @@ gulp.task('deploy', function() {
 // ...
 
 ```
-## And create alias in `package.json`
+## Create aliases in `package.json`
 
 Something like that:
 
