@@ -1,6 +1,6 @@
 {
   "name": "gulp-git-sftp",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Gulp plugin for sftp deploy with git",
   "main": "index.js",
   "scripts": {
