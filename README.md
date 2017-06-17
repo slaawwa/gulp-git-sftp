@@ -75,7 +75,7 @@ gulp.task('git', function() {
 gulp.task('deploy', function() {
        
     if (!argv.del) {
-        gulp.src( ['./**/*', '!node_modules{,/**}', '!bower{,/**}', '!bower_components{,/**}', '**/.htaccess'], { base: CNF.basePath, buffer: false } )
+        gulp.src( [`${CNF.basePath}/**/*`, '!node_modules{,/**}', '!bower{,/**}', '!bower_components{,/**}', '**/.htaccess'], { base: CNF.basePath, buffer: false } )
             .pipe( conn.newer( CNF.remotePath || argv.remotePath ) ) // only upload newer files 
             .pipe( conn.dest( CNF.remotePath || argv.remotePath ) );
     } else {
@@ -89,4 +89,24 @@ gulp.task('deploy', function() {
 // BUILD TASKS 
 // ...
 
+```
+## And create alias in `package.json`
+
+Something like that:
+
+```
+"scripts": {
+    "depfront:prod": "gulp deploy --remotePath=frontend --basePath=frontend --dephost=prod",
+    "depfront": "gulp deploy --remotePath=frontend --basePath=frontend",
+    "depback:prod": "gulp deploy --remotePath=backend --basePath=backend --dephost=prod",
+    "depback": "gulp deploy --remotePath=backend --basePath=backend",
+    "deploy:prod": "gulp deploy --dephost=prod",
+    "deploy": "gulp deploy",
+    "depfront:del:prod": "gulp deploy --remotePath=frontend --dephost=prod --del",
+    "depfront:del": "gulp deploy --remotePath=frontend --del",
+    "depback:del:prod": "gulp deploy --remotePath=backend --dephost=prod --del",
+    "depback:del": "gulp deploy --remotePath=backend --del",
+    "deploy:del:prod": "gulp deploy --dephost=prod --del",
+    "deploy:del": "gulp deploy --del"
+} 
 ```

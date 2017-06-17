@@ -1,12 +1,29 @@
 var argv = require('yargs').argv;
 
-var defCNF = {
-    user: '-',
-    pass: '-',
-    host: '--',
-    remotePath: '/',
-    basePath: '.',
-};
+/**
+ * @description             [Now you can use `gulp deploy --dephost=prod`]
+ * @param  {String}         [deployHost - prod or preprod or something else]
+ * @return {Object}         [Object with default config]
+ */
+var defCNF = (function(deployHost) {
+    var props = {
+        host: '-',
+        pass: '-',
+        remotePath: '/',
+        basePath: '.',
+    };
+    switch (deployHost) {
+        case 'prod': {
+            props.user = '-';
+        } break;
+        // preprod
+        case 'preprod':
+        default: {
+            props.user = '-';
+        }
+    }
+    return props;
+})(argv.dephost);
 
 var CNF = {
     user: argv.user || defCNF.user,

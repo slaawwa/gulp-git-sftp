@@ -9,5 +9,6 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 # If a directory or a file exists, use the request directly
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# Otherwise forward the request to index.php
-RewriteRule [.|home] index.html
+# Otherwise forward the request to index.html
+RewriteRule . index.html
+# RewriteRule [.|home|about] index.html # or only path  
